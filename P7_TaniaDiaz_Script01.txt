@@ -1,6 +1,17 @@
-﻿New-ADUser -Name "DIAZ Tania" -SamAccountName diaz -UserPrincipalName "Tdiaz@acme;lab" -AccountPassword (ConvertTo-SecureString -AsplainText Acmelab2022+ -Force) -PasswordNeverExpires $true -CannotChangePassword $true
-Enable-ADAccount diaz
-cd C:\
-New-Item -Name "TANIADIAZ" -ItemType Directory
-New-SmbShare -Name TaniaDiaz -Path C:\TANIADIAZ -FullAccess Administrateurs
-Grant-SmbShareAccess -Name TaniaDiaz -AccountName "Tout le Monde" -AccessRight Read
+﻿ " Vous alle Ajoute utilisateur et dossier de partage"
+
+$nom= Read-Host "Merci de Rentrer le nom et le prénom d l'utilisateur à Créer"
+$login= Read-Host "Merci de Rentrer le Login de l'Utilisateur à Créer"
+$mdp = Read-Host "Merci de Rentrer le Mot de Passe de l'Utilisateur à Créer"
+New-ADuser -Name $nom -SamAccountName $login -UserPrincipalName $login@acme.lab -AccountPassword (ConvertTo-SecureString -AsPlainText $mdp -Force) -PasswordNeverExpires $true -CannotChangePassword $true -Enable $true
+cd 'E:\ACME\Partages'
+New-Item -Name "$nom" -ItemType Directory
+New-SmbShare -Name $login -Path E:\ACME\Partages -FullAccess Administrateurs
+Grant-SmbShareAccess -Name $login -AccountName "Tout le Monde" -AccessRight Read
+Write-Host "L'Utilisateur $login et son Dossier Partage "$nom" a Bien Eté Crée"
+
+"Merci Gracias Bye"
+
+cd C:\Users\Administrateur\
+
+
