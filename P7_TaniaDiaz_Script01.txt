@@ -1,0 +1,6 @@
+﻿New-ADUser -Name "DIAZ Tania" -SamAccountName diaz -UserPrincipalName "Tdiaz@acme;lab" -AccountPassword (ConvertTo-SecureString -AsplainText Acmelab2022+ -Force) -PasswordNeverExpires $true -CannotChangePassword $true
+Enable-ADAccount diaz
+cd C:\
+New-Item -Name "TANIADIAZ" -ItemType Directory
+New-SmbShare -Name TaniaDiaz -Path C:\TANIADIAZ -FullAccess Administrateurs
+Grant-SmbShareAccess -Name TaniaDiaz -AccountName "Tout le Monde" -AccessRight Read
